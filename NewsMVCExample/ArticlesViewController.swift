@@ -10,7 +10,6 @@ import UIKit
 import SafariServices
 
 class ArticlesViewController: UIViewController {
-    let api = NewsAPI()
     var source: Source!
     var articles: [Article] = []
     
@@ -19,7 +18,7 @@ class ArticlesViewController: UIViewController {
     override func viewDidLoad() {
         title = source.name
 
-        api.load(.articles(source: source, sort: nil)) { [weak self] (response:ArticlesResponse?, error:Error?) in
+        NewsAPIController.load(.articles(source: source)) { [weak self] (response:ArticlesResponse?, error:Error?) in
             self?.articles = response?.articles ?? []
             self?.tableView.reloadData()
         }
@@ -32,7 +31,7 @@ extension ArticlesViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ArticleTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexPath) as! ArticleTableViewCell
         cell.authorLabel.text = articles[indexPath.row].author
         cell.previewImageView.setImage(from: articles[indexPath.row].urlToImage)
         cell.theTitleLabel.text = articles[indexPath.row].title

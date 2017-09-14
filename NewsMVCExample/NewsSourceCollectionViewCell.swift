@@ -8,8 +8,7 @@
 
 import UIKit
 
-class SourceCollectionViewCell: UICollectionViewCell, ReuseIdentifiable {
-    static var ReuseIdentifier : String { return "SourceCollectionViewCell" }
+class SourceCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

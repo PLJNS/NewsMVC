@@ -24,31 +24,9 @@ struct Source: JSONTransformable {
         name = jsonDictionary?["name"] as? String
         description = jsonDictionary?["description"] as? String
         url = jsonDictionary?["url"] as? String
-        if let categoryRawValue = jsonDictionary?["category"] as? String {
-            category = Category(rawValue: categoryRawValue)
-        } else {
-            category = nil
-        }
-        if let languageRawValue = jsonDictionary?["language"] as? String {
-            language = Language(rawValue: languageRawValue)
-        } else {
-            language = nil
-        }
-        if let countryRawValue = jsonDictionary?["country"] as? String {
-            country = Country(rawValue: countryRawValue)
-        } else {
-            country = nil
-        }
-        if let sortBysAvailableJSONArray = jsonDictionary?["sortBysAvailable"] as? [String] {
-            var aSortBysAvailable: [Sort] = []
-            for sortByAvailableRawValue in sortBysAvailableJSONArray {
-                if let sort = Sort(rawValue: sortByAvailableRawValue) {
-                    aSortBysAvailable.append(sort)
-                }
-            }
-            sortBysAvailable = aSortBysAvailable
-        } else {
-            sortBysAvailable = nil
-        }
+        category = Category(rawValue: jsonDictionary?["category"] as? String)
+        language = Language(rawValue: jsonDictionary?["language"] as? String)
+        country = Country(rawValue: jsonDictionary?["country"] as? String)
+        sortBysAvailable = nil /* not used in this exercise */
     }
 }

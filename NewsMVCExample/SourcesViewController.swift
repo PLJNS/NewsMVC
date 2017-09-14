@@ -9,8 +9,6 @@
 import UIKit
 
 class SourcesViewController: UIViewController {
-
-    let api = NewsAPI()
     var sources: [Source] = []
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -19,7 +17,7 @@ class SourcesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        api.load(.sources(categories: nil, languages: nil, countries: nil)) { [weak self] (response: SourcesResponse?, error:Error?) in
+        NewsAPIController.load(.sources) { [weak self] (response: SourcesResponse?, error:Error?) in
             self?.sources = response?.sources ?? []
             self?.collectionView.reloadData()
         }
@@ -27,7 +25,7 @@ class SourcesViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier ?? "" {
-        case Segue.sourcesToArticles.rawValue:
+        case "SourcesViewController_to_ArticlesViewController":
             let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first ?? IndexPath(item: 0, section: 0)
             let destination = segue.destination as! ArticlesViewController
             destination.source = sources[selectedIndexPath.row]
@@ -43,8 +41,11 @@ extension SourcesViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell : SourceCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.iconImageView.setIconImage(from: sources[indexPath.row].url)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SourceCollectionViewCell", for: indexPath) as! SourceCollectionViewCell
+        if let siteUrlString = sources[indexPath.row].url {
+            let imgUrlString = "https://icons.better-idea.org/icon?url=\(siteUrlString)&size=70..120..200"
+            cell.iconImageView.setImage(from: imgUrlString)
+        }
         cell.nameLabel.text = sources[indexPath.row].name
         return cell
     }
@@ -52,11 +53,10 @@ extension SourcesViewController: UICollectionViewDataSource {
 
 extension SourcesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numberOfCellsPerLineFloat: CGFloat = 2
-        let itemWidthWithoutConsideringInteritemSpace = collectionViewFlowLayout.collectionViewWidthWithoutInsets / numberOfCellsPerLineFloat
-        let numberOfInteritemSpaces = (numberOfCellsPerLineFloat - 1)
-        let amountOfInteritemSpacePerCell = (collectionViewFlowLayout.minimumInteritemSpacing / numberOfCellsPerLineFloat)
-        let itemWidth = itemWidthWithoutConsideringInteritemSpace - (numberOfInteritemSpaces * amountOfInteritemSpacePerCell)
+        let numberOfCellsPerLine: CGFloat = 2
+        let itemWidthWithoutConsideringInteritemSpace = collectionViewFlowLayout.collectionViewWidthWithoutInsets / numberOfCellsPerLine
+        let amountOfInteritemSpacePerCell = (collectionViewFlowLayout.minimumInteritemSpacing / numberOfCellsPerLine)
+        let itemWidth = itemWidthWithoutConsideringInteritemSpace - ((numberOfCellsPerLine - 1) * amountOfInteritemSpacePerCell)
         return CGSize(width: itemWidth, height: 208)
     }
 }

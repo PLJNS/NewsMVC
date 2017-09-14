@@ -8,8 +8,7 @@
 
 import UIKit
 
-class ArticleTableViewCell: UITableViewCell, ReuseIdentifiable {
-    static var ReuseIdentifier : String { return "ArticleTableViewCell" }
+class ArticleTableViewCell: UITableViewCell {
 
     @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var authorLabel: UILabel!

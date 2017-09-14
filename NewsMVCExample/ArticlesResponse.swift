@@ -9,20 +9,18 @@
 import Foundation
 
 struct ArticlesResponse: JSONTransformable {
-    let status: String?
+    let status: Status?
     let articles: [Article]?
+    let code: String?
+    let message: String?
 
     init(json: Any) {
         let jsonDictionary = json as? [String : Any]
-        status = jsonDictionary?["status"] as? String
-        if let articlesJSONArray = jsonDictionary?["articles"] as? [[String: Any]] {
-            var anArticles: [Article] = []
-            for sourceJSONDictionary in articlesJSONArray {
-                anArticles.append(Article(json: sourceJSONDictionary))
-            }
-            articles = anArticles
-        } else {
-            articles = nil
-        }
+        status = Status(rawValue: jsonDictionary?["status"] as? String)
+        code = jsonDictionary?["code"] as? String
+        message = jsonDictionary?["message"] as? String
+        articles = (jsonDictionary?["articles"] as? [Any])?.map({ (element:Any) -> Article in
+            return Article(json: element)
+        })
     }
 }
