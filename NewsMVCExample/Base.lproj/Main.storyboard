@@ -14,6 +14,7 @@
         <!--Articles-->
         <scene sceneID="tne-QT-ifu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" userLabel="Articles" customClass="ArticlesViewController" customModule="NewsMVCExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -90,13 +91,13 @@
                         <outlet property="tableView" destination="TIp-Zd-g67" id="cne-Qb-p76"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="873" y="112"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DDT-42-eia">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zWQ-Os-yLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="Sca-g8-BT6" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="my8-xl-7sR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -106,13 +107,13 @@
                         <segue destination="633-ud-etx" kind="relationship" relationship="rootViewController" id="lT9-AK-Fv4"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zWQ-Os-yLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-622" y="112"/>
         </scene>
         <!--Sources-->
         <scene sceneID="fr8-g8-9ee">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cof-wO-low" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="633-ud-etx" customClass="SourcesViewController" customModule="NewsMVCExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lcw-KG-eb1"/>
@@ -189,7 +190,6 @@
                         <outlet property="collectionViewFlowLayout" destination="YGD-eP-1Xq" id="xTH-TQ-Akt"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cof-wO-low" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="128.80000000000001" y="111.99400299850076"/>
         </scene>

@@ -10,7 +10,6 @@ import UIKit
 import SafariServices
 
 class ArticlesViewController: UIViewController {
-
     let api = NewsAPI()
     var source: Source!
     var articles: [Article] = []
