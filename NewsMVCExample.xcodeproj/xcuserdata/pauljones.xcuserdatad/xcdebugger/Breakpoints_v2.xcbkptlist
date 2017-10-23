@@ -2,4 +2,54 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NewsMVCExample/SourcesViewController.swift"
+            timestampString = "530388965.05827"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;NewsMVCExample.SourcesResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in NewsMVCExample.SourcesViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "NewsMVCExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pauljones/Desktop/NewsMVCExample-to-Swift%204%20copy/NewsMVCExample/SourcesViewController.swift"
+                  timestampString = "530388965.205931"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "171">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; Swift.Array&lt;NewsMVCExample.Source&gt; in closure #1 (Swift.Optional&lt;NewsMVCExample.SourcesResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in NewsMVCExample.SourcesViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "NewsMVCExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pauljones/Desktop/NewsMVCExample-to-Swift%204%20copy/NewsMVCExample/SourcesViewController.swift"
+                  timestampString = "530388965.207559"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

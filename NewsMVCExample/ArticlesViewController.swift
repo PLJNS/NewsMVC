@@ -10,15 +10,16 @@ import UIKit
 import SafariServices
 
 class ArticlesViewController: UIViewController {
-    var source: Source!
-    var articles: [Article] = []
+    var source: SourcesResponse.Source!
+    var articles: [ArticlesResponse.Article] = []
+    let apiController = NewsAPIController()
     
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         title = source.name
 
-        NewsAPIController.load(.articles(source: source)) { [weak self] (response:ArticlesResponse?, error:Error?) in
+        apiController.load(.articles(source: source)) { [weak self] (response:ArticlesResponse?, error:Error?) in
             self?.articles = response?.articles ?? []
             self?.tableView.reloadData()
         }

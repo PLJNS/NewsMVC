@@ -9,7 +9,8 @@
 import UIKit
 
 class SourcesViewController: UIViewController {
-    var sources: [Source] = []
+    var sources: [SourcesResponse.Source] = []
+    let apiController = NewsAPIController()
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
@@ -17,7 +18,7 @@ class SourcesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NewsAPIController.load(.sources) { [weak self] (response: SourcesResponse?, error:Error?) in
+        apiController.load(.sources) { [weak self] (response: SourcesResponse?, error:Error?) in
             self?.sources = response?.sources ?? []
             self?.collectionView.reloadData()
         }

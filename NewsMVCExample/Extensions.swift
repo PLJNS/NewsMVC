@@ -37,13 +37,3 @@ extension UICollectionViewFlowLayout {
         return collectionView.contentInset.left + collectionView.contentInset.right + sectionInset.left + sectionInset.right
     }
 }
-
-extension RawRepresentable {
-    init?(rawValue: Self.RawValue?) {
-        if let rawValue = rawValue {
-            self.init(rawValue: rawValue)
-        } else {
-            return nil
-        }
-    }
-}
