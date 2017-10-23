@@ -14,11 +14,10 @@ struct NewsAPIController {
     static let host = "newsapi.org"
     static let version = "v1"
 
-    let decoder = JSONDecoder()
     let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
 
     enum Path {
-        case articles(source: SourcesResponse.Source)
+        case articles(source: Source)
         case sources
 
         var url: URL? {
@@ -50,18 +49,28 @@ struct NewsAPIController {
         }
     }
 
-    @discardableResult func load<T : Codable>(_ path: Path, completionHandler: @escaping (_ response: T?, _ error: Error?) -> Void) -> URLSessionTask? {
-        guard let url = path.url else { DispatchQueue.main.async { completionHandler(nil, nil) }; return nil }
+    @discardableResult func load<T : JSONTransformable>(_ path: Path, completionHandler: @escaping (_ response: T?, _ error: Error?) -> Void) -> URLSessionTask? {
+        if let url = path.url {
+            let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+                guard let data = data else {
+                    DispatchQueue.main.async { completionHandler(nil, error) }
+                    return
+                }
 
-        let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-            guard let data = data else { DispatchQueue.main.async { completionHandler(nil, error) }; return }
-            guard let response = try? self.decoder.decode(T.self, from: data) else { DispatchQueue.main.async { completionHandler(nil, error) }; return }
-            DispatchQueue.main.async { completionHandler(response, error) }
-        })
+                guard let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) else {
+                    DispatchQueue.main.async { completionHandler(nil, error) }
+                    return
+                }
 
-        DispatchQueue.global().async {
-            task.resume()
+                DispatchQueue.main.async { completionHandler(T(json: json), error) }
+            })
+
+            DispatchQueue.global().async { task.resume() }
+
+            return task
         }
-        return task
+
+        DispatchQueue.main.async { completionHandler(nil, nil) }
+        return nil
     }
 }

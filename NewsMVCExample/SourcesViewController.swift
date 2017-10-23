@@ -9,7 +9,7 @@
 import UIKit
 
 class SourcesViewController: UIViewController {
-    var sources: [SourcesResponse.Source] = []
+    var sources: [Source] = []
     let apiController = NewsAPIController()
 
     @IBOutlet weak var collectionView: UICollectionView!

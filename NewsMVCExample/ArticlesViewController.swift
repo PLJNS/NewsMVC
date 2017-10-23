@@ -10,8 +10,8 @@ import UIKit
 import SafariServices
 
 class ArticlesViewController: UIViewController {
-    var source: SourcesResponse.Source!
-    var articles: [ArticlesResponse.Article] = []
+    var source: Source!
+    var articles: [Article] = []
     let apiController = NewsAPIController()
     
     @IBOutlet weak var tableView: UITableView!
